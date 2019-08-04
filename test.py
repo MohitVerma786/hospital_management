@@ -2,9 +2,9 @@ import mysql.connector
 import datetime
 from tkinter import *
 from tkinter import messagebox
-root = Tk()
-t = Text(root,height=10, width=30)
-t.pack()
+#root = Tk()
+#t = Text(root,height=10, width=30)
+#t.pack()
 #x = datetime.datetime.now().strftime("%I:%M %p , %d-%b-%Y")
 #mydb = mysql.connector.connect(host="localhost",user="root",passwd="mohit")
 #mycursor = mydb.cursor()
@@ -17,10 +17,9 @@ t.pack()
 #mydb.commit()
 mydb = mysql.connector.connect(host="localhost",database="sysytem",user="root",passwd="mohit")
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM paa")
-record = mycursor.fetchall()
-for row in record:
-    t.insert(END,"paitent name: "+str(row[0]))
-root.mainloop()
+mycursor.execute("DELETE FROM paa WHERE paitent_id = %s",("2",))
+#root.mainloop()
+mydb.commit()
 mycursor.close()
 mydb.close()
+print("deleted")
