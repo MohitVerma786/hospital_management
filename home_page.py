@@ -1,8 +1,11 @@
 from tkinter import*
 from PIL import Image,ImageTk
+from tkinter import ttk
 import paitent_login_page
+import doctor_login_page
+import admin_login_page
 class homepage:
-    def paitent(self):
+    def staff(self):
         self.master.destroy()
         root = Tk()
         paitent_login_page.main(root)
@@ -13,29 +16,53 @@ class homepage:
         doctor_login_page.main(root)
         root.mainloop()
     def admin(self):
-        import admin_login_page
+        self.master.destroy()
+        root = Tk()
+        admin_login_page.main(root)
+        root.mainloop()
 
 
     def __init__(self,master):
         self.master = master
+        self.master.geometry('1000x600+150+50')
+        self.master.title("Hospital Management System")
         self.widgets()
     def widgets(self):
-        hei = self.master.winfo_screenheight()
-        wid = self.master.winfo_screenwidth()
-        self.frame = Frame(self.master, width=wid, height=hei)
-        self.frame.pack()
-        self.canvas = Canvas(self.frame, width=wid, height=hei)
-        self.canvas.pack()
-        c_img = Image.open("images/main.png")
-        c_img = c_img.resize((wid,hei), Image.ANTIALIAS)
-        self.canvas.img = ImageTk.PhotoImage(c_img)
-        self.canvas.create_image(0,0,image=self.canvas.img, anchor=NW)
-        self.paitent_button = Button(self.canvas, text="Paitent", bd=12, font=('', 40), padx=5, pady=5, command=self.paitent)
-        self.canvas.create_window(50,630,window=self.paitent_button, anchor=SW)
-        self.doctor_button = Button(self.canvas, text="Doctor", bd=12, font=('', 40), padx=5, pady=5, command=self.doctor)
-        self.canvas.create_window(400,630,window=self.doctor_button, anchor=SW)
-        self.admin_button = Button(self.canvas, text="Admin", bd=12, font=('', 40), padx=5, pady=5, command=self.admin)
-        self.canvas.create_window(800,630,window=self.admin_button, anchor=SW)
+        self.headframe = Frame(self.master, bg='#94b1b9')
+        self.headframe.place(height=600, width=1000)
+        head_label = Label(self.headframe, text="Hospital Management System", bg='#94b1b9', font=('',30))
+        head_label.place(x=240, y=14)
+        seprator1 = ttk.Separator(self.headframe, orient="horizontal")
+        seprator1.place(x=50, y=80, width=895)
+        seprator2 = ttk.Separator(self.headframe, orient="vertical")
+        seprator2.place(x=500, y=100, height=330)
+        pic1 = Image.open('images/staff.png')
+        pic1 = pic1.resize((150, 150), Image.ANTIALIAS)
+        self.pic1 = ImageTk.PhotoImage(pic1)
+        self.staff_button_i = Button(self.headframe, image=self.pic1, bg='#94b1b9', relief='groove',
+                                     activebackground='#94b1b9', command=self.staff)
+        self.staff_button_i.place(x=170, y=170)
+        self.staff_button = Button(self.headframe, text="STAFF LOGIN", font=('',15,'bold'), bg='#94b1b9',
+                                   relief='groove', activebackground='#94b1b9', command=self.staff)
+        self.staff_button.place(x=173, y=325)
+        pic2 = Image.open('images/doctor.png')
+        pic2 = pic2.resize((150,150), Image.ANTIALIAS)
+        self.pic2 = ImageTk.PhotoImage(pic2)
+        self.doctor_button_i = Button(self.headframe, image=self.pic2, bg='#94b1b9', relief='groove',
+                                       activebackground='#94b1b9', command=self.doctor)
+        self.doctor_button_i.place(x=670, y=170)
+        self.doctor_button = Button(self.headframe, text="DOCTOR LOGIN", font=('', 15, 'bold'), bg='#94b1b9',
+                                     relief='groove', activebackground='#94b1b9', command=self.doctor)
+        self.doctor_button.place(x=662, y=325)
+        pic3 = Image.open('images/admin.png')
+        pic3 = pic3.resize((100, 100), Image.ANTIALIAS)
+        self.pic3 = ImageTk.PhotoImage(pic3)
+        self.admin_button_i = Button(self.headframe, image=self.pic3, bg='#94b1b9', relief='groove',
+                                     activebackground='#94b1b9', command=self.admin)
+        self.admin_button_i.place(x=447, y=450)
+        self.admin_button = Button(self.headframe, text="ADMIN LOGIN", font=('', 12, 'bold'), bg='#94b1b9',
+                                   relief='groove', activebackground='#94b1b9', command=self.admin)
+        self.admin_button.place(x=440, y=555)
 
 
 

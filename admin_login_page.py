@@ -33,24 +33,21 @@ class main:
         self.TSeparator1 = ttk.Separator(self.logf)
         self.TSeparator1.configure(orient="vertical")
         self.TSeparator1.place(x=480, y=5, height=420)
-        pic1 = Image.open('images/staff.png')
+        pic1 = Image.open('images/admin.png')
         pic1 = pic1.resize((150, 150), Image.ANTIALIAS)
         self.pic1 = ImageTk.PhotoImage(pic1)
 
         self.head_image = Label(self.logf, image=self.pic1, bg='#d9d9d9')
         self.head_image.place(x=150, y=40)
-        self.head_label = Label(self.logf, bg='#d9d9d9', text="STAFF LOGIN", font=('', 30)).place(x=90, y=180)
+        self.head_label = Label(self.logf, bg='#d9d9d9', text="ADMIN LOGIN", font=('', 30)).place(x=90, y=180)
         self.user_label = Label(self.logf, bg='#d9d9d9', text="USERNAME:", font=('', 15)).place(x=490, y=140)
         self.user_entry = Entry(self.logf, textvariable=self.username, font=('', 10)).place(x=620, y=146)
         self.password_label = Label(self.logf, bg='#d9d9d9', text="PASSWORD:", font=('', 15)).place(x=490, y=180)
         self.user_entry = Entry(self.logf, textvariable=self.password, font=('', 10), show="*").place(x=620, y=186)
-        self.button = Button(self.logf, text="LOGIN", background='#d9d9d9', font=('', 13), command=self.login).place(
-            x=580, y=240)
+        self.button = Button(self.logf, text="LOGIN", background='#d9d9d9', font=('', 13), command=self.login).place(x=580, y=240)
         pic2 = Image.open('images/back.png')
         pic2 = pic2.resize((35, 35), Image.ANTIALIAS)
         self.pic2 = ImageTk.PhotoImage(pic2)
         self.back_button_i = Button(self.logf, image=self.pic2, bg='#94b1b9', relief='groove',
-                                      activebackground='#94b1b9', command=self.back).place(x=5, y=5)
-
-
+                                    activebackground='#94b1b9', command=self.back).place(x=5, y=5)
 

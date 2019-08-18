@@ -17,7 +17,7 @@ class paitent:
         self.widget()
     def store(self):
         date_of_visit = datetime.datetime.now().strftime("%I:%M:%S %p , %d-%b-%Y")
-        mydb = mysql.connector.connect(host="localhost", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("CREATE DATABASE IF NOT EXISTS paitent_sysytem")
         mycursor.execute("USE paitent_sysytem")
@@ -48,7 +48,7 @@ class paitent:
             self.store()
             messagebox.showinfo("succeed","Recipt Details are Recorded Sucessfully.")
             self.button_value = 2
-            mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+            mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
             mycursor = mydb.cursor()
             mycursor.execute("SELECT * FROM paitent WHERE date_of_visit = %s",(str(date_of_visit), ))
             record = mycursor.fetchall()
@@ -76,7 +76,7 @@ class paitent:
         text_box.pack(side=LEFT,fill=Y)
         scroll_bar.config(command=text_box.yview)
         text_box.config(yscrollcommand=scroll_bar.set)
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM paitent")
         record = mycursor.fetchall()
@@ -98,7 +98,7 @@ class paitent:
         text_box.pack(side=LEFT, fill=Y)
         scroll_bar.config(command=text_box.yview)
         text_box.config(yscrollcommand=scroll_bar.set)
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM paitent WHERE paitent_id = %s", (str(self.paitent_search_e.get()),))
         record = mycursor.fetchall()
@@ -122,7 +122,7 @@ class paitent:
 
         wanna = messagebox.askyesno("Confirm","Are You Sure You Want To Delete This Patient Details From Records")
         if(wanna):
-            mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+            mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
             mycursor = mydb.cursor()
             mycursor.execute("DELETE FROM paitent WHERE paitent_id = %s", (str(self.paitent_search_e.get()),))
             mydb.commit()
@@ -183,7 +183,7 @@ class paitent:
         self.recipt_frame.grid()
         self.button_value=2
     def edit_name(self):
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("UPDATE paitent SET paitent_name = %s WHERE  paitent_id = %s", (self.name_update_e.get(),str(self.current_paitent_update[0])))
         mydb.commit()
@@ -191,7 +191,7 @@ class paitent:
         mydb.close()
         messagebox.showinfo("sucess","Sucessfully Updated")
     def edit_opd(self):
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("UPDATE paitent SET opd_id = %s WHERE  paitent_id = %s",
                          (self.update_opd_e.get(), str(self.current_paitent_update[0])))
@@ -201,7 +201,7 @@ class paitent:
         messagebox.showinfo("sucess", "Sucessfully Updated")
 
     def edit_amount(self):
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("UPDATE paitent SET amount = %s WHERE  paitent_id = %s",
                          (self.amount_update_e.get(), str(self.current_paitent_update[0])))
@@ -213,7 +213,7 @@ class paitent:
         self.temp = str(self.paitent_search_e.get())
         master.destroy()
         root = Tk()
-        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="mohit")
+        mydb = mysql.connector.connect(host="localhost", database="paitent_sysytem", user="root", passwd="")
         mycursor = mydb.cursor()
         mycursor.execute("SELECT * FROM paitent WHERE paitent_id = %s", (self.temp,))
         record = mycursor.fetchone()
@@ -277,16 +277,16 @@ class paitent:
     def widget(self):
 
 
-        self.menu_frame = Frame(self.master, padx=5, pady=5)
-        self.menu_frame.grid()
+        self.menu_frame = Frame(self.master,bd=50,bg='grey',height=500, width=100, padx=5, pady=5)
+        self.menu_frame.place()
         title1 = Label(self.menu_frame, text="Paitent Menu", font=('bold', 30))
-        title1.grid(row=0, column=2)
+        title1.place()
         new_paitent = Button(self.menu_frame, text="New Appointment", font=('bold', 20), command=self.recipt)
-        new_paitent.grid(row=1, column=1, pady=100, ipadx=50)
+        new_paitent.place()
         list_all = Button(self.menu_frame, text="List All", font=('bold', 20), command=self.list_all)
-        list_all.grid(row=1, column=2, pady=100, ipadx=50)
+        list_all.place()
         search = Button(self.menu_frame, text="Search/Update/Edit", font=('bold', 20),  command=self.search)
-        search.grid(row=1, column=3, pady=100, ipadx=50)
+        search.place()
 
 if __name__ == '__main__':
     window = Tk()
