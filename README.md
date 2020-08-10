@@ -15,6 +15,6 @@
 
 ![Finished App](https://github.com/MohitVerma786/hospital_management/blob/master/Screenshot%20(12).png)
 
-![Finished App](https://github.com/MohitVerma786/hospital_management/blob/master/Screenshot%20(13).png)
+![Finished App](https://github.com/MohitVerma786/hospital_management/blob/master/Screenshot%20(21).png)
 
-![Finished App](https://github.com/MohitVerma786/hospital_management/blob/master/Screenshot%20(14).png)
+![Finished App](https://github.com/MohitVerma786/hospital_management/blob/master/Screenshot%20(22).png)
